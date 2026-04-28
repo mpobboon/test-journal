@@ -1381,20 +1381,19 @@ function exportReport(){
 //  SESSION ANALYSIS
 // ============================================================
 function detectSession(timeStr){
-  if(!timeStr) return 'Unknown';
+  if(!timeStr) return 'Other';
   const h = parseInt(timeStr.split(':')[0]);
-  if(h >= 2  && h < 9)  return 'Asian';
-  if(h >= 9  && h < 15) return 'London';
-  if(h >= 15 && h < 17) return 'London/NY';
-  if(h >= 17 && h < 23) return 'New York';
+  if(h >= 7  && h < 14) return 'Tokyo';
+  if(h >= 14 && h < 19) return 'London';
+  if(h >= 19 || h < 4)  return 'New York';
   return 'Other';
 }
 
 function renderSessionPage(){
-  const SESSIONS = ['Asian','London','London/NY','New York','Other'];
-  const sessionColors = { 'Asian':'var(--blue)','London':'var(--purple)','London/NY':'var(--yellow)','New York':'var(--accent)','Other':'var(--muted)' };
-  const sessionBg = { 'Asian':'rgba(96,165,250,.65)','London':'rgba(167,139,250,.65)','London/NY':'rgba(251,191,36,.65)','New York':'rgba(74,222,128,.65)','Other':'rgba(107,117,146,.5)' };
-  const cardClass = { 'Asian':'blue','London':'purple','London/NY':'yellow','New York':'green','Other':'' };
+  const SESSIONS = ['Tokyo','London','New York','Other'];
+  const sessionColors = { 'Tokyo':'#f472b6','London':'var(--blue)','New York':'var(--accent)','Other':'var(--muted)' };
+  const sessionBg = { 'Tokyo':'rgba(244,114,182,.65)','London':'rgba(96,165,250,.65)','New York':'rgba(74,222,128,.65)','Other':'rgba(107,117,146,.5)' };
+  const cardClass = { 'Tokyo':'','London':'blue','New York':'green','Other':'' };
 
   const sd = {};
   SESSIONS.forEach(s=>{ sd[s]={trades:[],wins:0,pnl:0,rr:0}; });
